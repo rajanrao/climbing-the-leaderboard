@@ -1,0 +1,46 @@
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the climbingLeaderboard function below.
+def climbingLeaderboard(scores, alice):
+    scores1=[]
+    rank=[]
+    
+    for sc in scores:
+        if sc not in scores1:
+            scores1.append(sc)
+    
+    
+    for al in alice:
+        i=0
+        for ele in scores1:
+            if ele<=al:
+                rank.append(i+1)
+                break   
+            i=i+1
+        if(i==(len(scores1))):
+            rank.append(i+1)
+    return rank
+
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    scores_count = int(input())
+
+    scores = list(map(int, input().rstrip().split()))
+
+    alice_count = int(input())
+
+    alice = list(map(int, input().rstrip().split()))
+
+    result = climbingLeaderboard(scores, alice)
+
+    fptr.write('\n'.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
